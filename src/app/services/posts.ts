@@ -16,7 +16,7 @@ export async function getPosts() {
         content_type: "post"
     })
 
-    return post.items.map(item => item.fields) as Post[]
+    return post.items.map((item: any) => item.fields) as Post[]
 }
 
 export async function getPost(slug: string) {
@@ -25,5 +25,6 @@ export async function getPost(slug: string) {
         'fields.slug': slug
     })
 
-    return post.items.map(item => item.fields)[0] as Post
+    return post.items.map((item: any) => item.fields)[0] as Post
 }
+
