@@ -1,29 +1,41 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { getPosts } from './services/posts'
-
+import { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: "Skatemaniac"
+
+}
 
 export default async function Home() {
   const posts = await getPosts()
 
   return (
-    <>
-      <section className='flex'>
-        <div className='mx-auto'>
-          <div>
-            <div className='mt-10 mb-8'><h2 className='text-yellow-500 text-4xl font-bold'>Skatemanic</h2></div>
-            <ul>{
-              posts.map(post => (
-                <li className='my-2' key={post.slug}>
-                  <Link href={`post/${post.slug}`}>{post.title}</Link>
-                </li>
 
-              ))}
+    <main>
+      <div className='mt-24 sm:px-8 md:mt-28'>
+        <div className='mx-auto max-w-6xl lg:px-12'>
+          <div className='mx-auto max-w-2xl lg:max-w-5xl'>
+            <div className='mx-auto lg:px-28 max-2-xl grid-cols-1 gap-y-20 lg:grid-cols-2'>
+              <div className='flex flex-col gap-16'>
+                <ul>{
+                  posts.map(post => (
+                    <li className='my-2' key={post.slug}>
+                      <Link href={`post/${post.slug}`}>{post.title}</Link>
+                    </li>
 
-            </ul>
+                  ))}
+
+                </ul>
+
+              </div>
+            </div>
           </div>
+
         </div>
-      </section>
-    </>)
+      </div>
+    </main>
+  )
 }
